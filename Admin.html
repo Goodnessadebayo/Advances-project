@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>shq Quilla_Admin page </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="Bootstrap/css/headers.css">
+  <link rel="stylesheet" href="assets/css/blog.css">
+  <link rel="stylesheet" href="assets/css/search.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="fontawesome-free-6.5.1-web/css/all.css">
+    	
+    <link href="Bootstrap/css/navbar.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body style="background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(assets/img/services-bgi.jpg) fixed center center;, background-size:cover;">
+<!-- ======= Header ======= -->
+<header class="mb-2" id="head"
+  data-aos-delay="300" data-aos="fade-down">
+  <nav class="navbar navbar-expand-md bg-danger fixed-top" aria-label="Twelfth navbar example">
+      <div class="container-fluid">
+         
+      <span class="ms-3 fs-2 text-light fw-bolder"><i class="bx bx-cloud text-light"></i><span class="text-warning fs-1">Q</span>uîlla</span>
+         
+      </div>
+    </nav>
+       </header><br><br>
+   <!-- End Header -->
+ 
+ 
+   
+    <style>
+        .edit-mode {
+            background-color: #f0f8ff;
+        }
+        
+        .table th {
+        	background: indianred;
+        	color:white;
+}
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <form id="save-form" class="needs-validation" novalidate>
+            <label for="position-absolute" class="ms-2 mt-3 d-none">Upload your product here</label>
+            <div class="form-floating mb-3 d-none">
+                <input type="file" class="form-control rounded-4" id="fileInput" multiple required>
+                <div class="mb-3" id="fileDisplayArea"></div>
+                <div class="btn-group ms-2">
+                    <button onclick="uploadFiles()" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button onclick="clearDisplay()" type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+            </div>
+
+            <div class="form-floating mb-3 d-none">
+                <input type="text" class="form-control rounded-4" id="productTitle" placeholder="Product Title" required>
+                <label for="productTitle">PRODUCT TITLE</label>
+                <div class="invalid-feedback">Your product title is required.</div>
+            </div>
+
+            <div class="form-floating mb-3 d-none">
+                <input type="text" class="form-control rounded-4" id="productBrand" placeholder="Product Brand" required>
+                <label for="productBrand">PRODUCT BRAND</label>
+                <div class="invalid-feedback">Product brand name is required.</div>
+            </div>
+
+            <div class="form-floating mb-3 d-none">
+                <input type="number" class="form-control rounded-4" id="productPrice" placeholder="Price of Product" required>
+                <label for="productPrice">PRICE OF PRODUCT</label>
+                <div class="invalid-feedback">Product price is required.</div>
+            </div>
+
+            <p class="ms-2 d-none">For sales reference, provide WhatsApp/Telegram number here</p>
+            <div class="form-floating mb-3 d-none">
+                <input type="number" class="form-control rounded-4" id="number" placeholder="Phone Number" required>
+                <label for="number">PHONE NUMBER</label>
+                <div class="invalid-feedback">Phone number is required.</div>
+            </div>
+
+            <div class="form-group my-3 d-none">
+                <textarea class="form-control" id="description" rows="5" placeholder="Description" required></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid my-5">
+        <h1  class="fw-bolder">Admin page</h1><button onclick="saveDocuments(event)" type="submit" class="btn btn-outline-success mt-2">refresh</button>
+        <h3 class="mt-5">SELLERHQ Product List</h3>
+        <table class="table table-bordered" id="productTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Brand</th>
+                    <th>Price</th>
+                    <th>PhoneNumber</th>
+                    <th>Description</th>
+                    <th>Files</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        </div>
+
+     <script src="sellerHQ/assets/js/Styles.js">
+</script>
+   
+<style>
+	.modal-content {
+		text-align:center;
+		color:#fff;
+		backdrop-filter: blur(50px);
+		background:rgba(49, 49, 49, .5);
+		border:1px solid rgba(255, 255, 255, .5);
+}
+.modal-content form{
+		margin-top:50px;	
+		align-items:center;
+}
+.modal-content form input{
+		padding:10px 20px;
+		border:none;
+		outline:none;
+		background:none;
+		border-bottom:1px solid #12151e;
+		margin-bottom:10px;
+}
+	
+	</style>
+      
+    <!--------   modal signin ------>  
+<div class="modal fade mt-5 message-alert" id="modalSignin" data-bs-backdrop="satic" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalSignin" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header p-4 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <p class="fw-bold mb-0 fs-1">Welcome Back!</p>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+ 
+<div class="modal-body py-4 pt-0 bg-white">
+     <form id="signinForm">
+        <input type="text" id="signinUsername" placeholder="Username" class="" required><br>
+        <input type="password" id="signinPassword" placeholder="Password" class="" required><br>
+        <a data-bs-toggle="modal" data-bs-target="#modalForgottenpassword" class="text-decoration-none">Forgot your password?</a>
+        <input type="submit" class="btn btn-outline-warning col-12 py-2 fs-4 fw-bolder rounded-3 mt-2" value="Login">
+          
+          <hr class="my-4 text-dark">
+          	 
+             <a data-bs-toggle="modal" data-bs-target="#modalGenerate" class="w-100 py-2 btn">Create an Account!</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-----  modal conf for forgotten password ------>
+<div class="modal fade mt-5 message-alert" id="modalForgottenpassword" data-bs-backdrop="satic" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalForgottenpassword" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header p-4 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <p class="fw-bold mb-0 fs-2">Forgot Your Password?</p>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+  <p class="px-3 ">We get it, stuff happens. Just enter your email address below and we will send you a link to reset your password.</p>
+      <div class="modal-body py-4 pt-0 bg-white">
+        <form id="forgotPasswordForm">
+        <input type="text" id="forgotUsername" placeholder="Username" class="" required><br>
+        <input type="password" id="newPassword" placeholder="New Password" class="" required><br>
+        <button type="submit" class="btn btn-outline-warning col-12 py-2 fs-4 fw-bolder rounded-3">Reset Password</button>
+        </form>
+          <hr class="my-4 text-dark">
+          	 
+             <a data-bs-toggle="modal" data-bs-target="#modalGenerate" class="w-100 py-2 btn">Create an Account!</a>
+             <a data-bs-toggle="modal" data-bs-target="#modalSignin" class="w-100 py-2 btn">Already have an Account? Login!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---- modal conf for generating account --->
+<div class="modal fade mt-5 message-alert" id="modalGenerate" data-bs-backdrop="satic" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalGenerate" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header p-4 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <p class="fw-bold mb-0 fs-1">Create an Account!</p>
+     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body py-4 pt-0 bg-white">
+      <form id="registerForm">
+        <input type="text" id="firstName" placeholder="First Name" class="" required><br>
+        <input type="text" id="lastName" placeholder="Last Name" class="" required><br>
+        <input type="email" id="email" placeholder="Email" class="" required><br>
+        <input type="text" id="phoneNumber" placeholder="Phone Number" class="" required><br>
+        <input type="text" id="username" placeholder="Username" class="" required><br>
+        <input type="password" id="password" placeholder="Password" class="" required><br>
+        <a data-bs-toggle="modal" data-bs-target="#modalForgottenpassword" class="text-decoration-none">Forgot your password?</a>
+        <input type="submit" class="btn btn-outline-warning col-12 py-2 fs-4 fw-bolder rounded-3 mt-2" value="Register Account">
+    </form>
+          <hr class="my-4 text-dark">
+          	 
+             <a data-bs-toggle="modal" data-bs-target="#modalSignin" class="w-100 py-2 btn">Already have an Account? Login!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class ="container-fluid mt-5">
+   <span id="logoutButton"></span>
+    <h2>User Data</h2>
+    <table class="table table-bordered"  border="1" id="userTable">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+    <!-- Edit Modal -->
+    <div id="editModal" style="display:none;">
+        <h3>Edit User</h3>
+        <form id="editForm">
+            <input type="text" id="editFirstName" placeholder="First Name" required><br>
+            <input type="text" id="editLastName" placeholder="Last Name" required><br>
+            <input type="email" id="editEmail" placeholder="Email" required><br>
+            <input type="text" id="editPhoneNumber" placeholder="Phone Number" required><br>
+            <input type="text" id="editUsername" placeholder="Username" readonly><br>
+            <input type="password" id="editPassword" placeholder="Password" required><br>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        
+    </script>
+ 
+
+     
+ <script src="Bootstrap/js/Bootstrap.bundle.min.js"></script>
+ <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+ 
+
+  <script src="assets/js/Styles.js"></script>
+  <script src="assets/js/form.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
