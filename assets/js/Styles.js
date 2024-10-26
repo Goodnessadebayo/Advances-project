@@ -82,7 +82,60 @@ function closeNav() {
 
 
 
+function uploadFiles() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;  // Get the uploaded files
+            const displayArea = document.getElementById('fileDisplayArea');
+            
+            displayArea.innerHTML = ''; // Clear previous files before uploading new ones
 
+            // Loop through each file
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+
+                // Create a file reader to read the file content
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const fileContent = e.target.result;
+
+                    // If the file is an image, display it
+                    if (file.type.startsWith('image/')) {
+                        const img = document.createElement('img');
+                        img.src = fileContent;
+                        img.style.maxWidth = '300px';  // Set a max width for images
+                        displayArea.appendChild(img);
+                    }
+                    // If it's a text file, display the text content
+                    else if (file.type === 'text/plain') {
+                        const text = document.createElement('p');
+                        text.textContent = fileContent;
+                        displayArea.appendChild(text);
+                    }
+                    // For other files, just show the file name
+                    else {
+                        const fileName = document.createElement('p');
+                        fileName.textContent = 'Uploaded: ' + file.name;
+                        displayArea.appendChild(fileName);
+                    }
+                };
+
+                // Read the file content (for images or text files)
+                if (file.type.startsWith('image/') || file.type === 'text/plain') {
+                    reader.readAsDataURL(file); // For images
+                } else {
+                    reader.readAsText(file); // For text files
+                }
+            }
+        }
+
+        // Function to clear the display area
+        function clearDisplay() {
+            const displayArea = document.getElementById('fileDisplayArea');
+            displayArea.innerHTML = '';  // Clear the content of the display area
+            document.getElementById('fileInput').value = '';  // Reset the file input
+                                                           }
+                
 
 
 
