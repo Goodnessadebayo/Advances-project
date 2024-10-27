@@ -426,7 +426,9 @@
 	margin-left:4.5rem;
 }
 
-
+.modal img{
+	padding-left:3rem;
+	}
 
 /* moral form */
 .modal form{
