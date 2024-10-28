@@ -439,6 +439,10 @@
 	padding:15px 3px;
 }
 
+.modal a{
+	border:none;
+	outline:none;
+}
 .modal #signinForm #signinUsername, #signinPassword{
 	 
 }
